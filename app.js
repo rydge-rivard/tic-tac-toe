@@ -2,38 +2,18 @@
 //Your players are also going to be stored in objects
 //an object to control the flow of the game itself.
 
+function gameBoard () {
+    const rows = 3;
+    const columns = 3;
+    const board = [];
 
-const game = (function () {
-
-    const divBoard = document.querySelector('#board');
-    const gameBoard = ['', '', '', '', '', '', '', '', ''];
-
-    const BoardObj = {
-        one: '',
-        two: '',
-        three: '',
-        four: '',
-        five: '',
-        six: '',
-        seven: '',
-        eight: '',
-        nine: '', 
+    for (let i = 0; i < rows; i++) {
+        board[i] = [];
+        for (let j = 0; j < columns; j++) {
+          board[i].push('');
+        }
     }
+    console.log(board);
+};
 
-    console.log(BoardObj);
-
-    const player1 = createPlayer('Rydge', 'x');
-    const player2 = createPlayer('Eli', 'o');
-
-    function createPlayer (name, symbol) {
-        return {name, symbol};
-    }
-    
-    console.log(player1);
-    console.log(player2);
-
-    return {
-        
-    }
-}());
-
+gameBoard();
