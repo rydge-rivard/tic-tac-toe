@@ -6,39 +6,29 @@
 const game = (function () {
 
     const divBoard = document.querySelector('#board');
-    const gameBoard = ['o', 'o', 'o', 'x', 'o', 'x', 'x', 'x', 'x'];
+    const gameBoard = ['', '', '', '', '', '', '', '', ''];
+
+    const BoardObj = {
+        one: '',
+        two: '',
+        three: '',
+        four: '',
+        five: '',
+        six: '',
+        seven: '',
+        eight: '',
+        nine: '', 
+    }
+
+    console.log(BoardObj);
 
     const player1 = createPlayer('Rydge', 'x');
     const player2 = createPlayer('Eli', 'o');
-    renderGameBoard();
 
     function createPlayer (name, symbol) {
         return {name, symbol};
     }
     
-    function renderGameBoard () {
-        createBoard (gameBoard, divBoard);
-        return {gameBoard};
-    }
-
-    function createBoard (array, div) {
-        array.forEach(square => {
-            let newDiv  = document.createElement('div');
-            newDiv.textContent = square;
-            div.appendChild(newDiv);
-            bindEvents (newDiv);
-        });
-    }
-
-    function bindEvents (div) {
-        div.addEventListener ('click', () => updateBoardContent(div));
-    }
-
-    function updateBoardContent (square) {
-        console.log('enter')
-        square.textContent = 'x';
-    }
-
     console.log(player1);
     console.log(player2);
 
