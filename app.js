@@ -13,7 +13,32 @@ function gameBoard () {
           board[i].push('');
         }
     }
-    console.log(board);
+    return board;
 };
 
-gameBoard();
+const gameController = (function () {
+    const board = gameBoard();
+    const players = [
+        createPlayer('Rydge', 'x'),
+        createPlayer('Eli', 'o'),
+    ]
+    let activePlayer = players[0].name;
+    console.log(activePlayer);
+
+    function createPlayer (name, symbol) {
+        return {name, symbol};
+    }
+
+    function switchPlayerTurn () {
+        activePlayer === players[0].name ? activePlayer = players[1].name : activePlayer = players[0].name;
+        return console.log(`${activePlayer}, it's your turn.`)
+    }
+
+    
+
+    return {
+        
+    }
+
+
+})();
