@@ -68,6 +68,7 @@ const gameController = (function () {
         element.textContent = activePlayer.symbol;
         switchPlayerTurn ();
         checkRowWinner ();
+        checkDiagonalWinner ();
         checkColumnWinner ();
     }
 
@@ -75,8 +76,8 @@ const gameController = (function () {
         for (const key in board) {
             const allEqual = board[key].every(v => v !== '' ? v === board[key][0] : false);
             allEqual === true ? setTimeout(declareWinner, 120) : false;
-        }
-    }
+        };
+    };
 
     function checkColumnWinner () {
         for (let i = 0; i < board[0].length; i++) {
@@ -84,7 +85,19 @@ const gameController = (function () {
             if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
                 if (board[0][i] !== '' && board[1][i] !== '' && board[2][i] !== '') {
                     setTimeout(declareWinner, 120);
-                }
+                };
+            };
+        };
+    };
+
+    function checkDiagonalWinner () {
+        if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+            if (board[0][0] !== '' && board[1][1] !== '' && board[2][2] !== '') {
+                setTimeout(declareWinner, 120);
+            }
+        } else if (board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+            if (board[0][2] !== '' && board[1][1] !== '' && board[2][0] !== '') {
+                setTimeout(declareWinner, 120);
             }
         }
     }
