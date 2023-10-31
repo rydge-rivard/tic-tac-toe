@@ -42,15 +42,11 @@ const gameController = (function () {
     }
 
     function removeInputs () {
-        inputs.forEach(element => {
-            element.remove();
-        });
+        inputs.forEach(element => element.remove());
     };
 
     function removeLabels () {
-        labels.forEach(element => {
-            element.remove();
-        });
+        labels.forEach(element => element.remove());
     };
 
     function removeStartBtn () {
