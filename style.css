@@ -36,11 +36,6 @@ button {
     color: white;
 }
 
-.block {
-    display: block;
-    border: none;
-}
-
 button:hover {
     background-color: rgb(38, 38, 38);
     cursor: pointer;
@@ -48,4 +43,11 @@ button:hover {
 
 input {
     padding: 4px 4px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: none;
 }

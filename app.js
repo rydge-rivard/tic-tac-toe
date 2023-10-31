@@ -18,22 +18,39 @@ function getAllSquares () {
 }
 
 const gameController = (function () {
+    const inputContainer = document.querySelector('.container')
     const startBtn = document.querySelector('.start');
+    const newBtn = document.querySelector('.new')
     const inputs = document.querySelectorAll('input');
     const labels = document.querySelectorAll('label');
     const boardDiv = document.querySelector('#board');
-    startBtn.addEventListener('click', () => getPlayers());
+    startBtn.addEventListener('click', getPlayers);
+    newBtn.addEventListener('click', newGame)
     const players = [];
     let activePlayer;
     let board = gameBoard();
 
     printBoard();
 
+    function newGame () {
+        addInputsLabelsStart();
+        resetGame();
+    }
+
+    function addInputsLabelsStart () {
+        inputContainer.append(labels[0]);
+        inputContainer.append(inputs[0]);
+        inputContainer.append(labels[1]);
+        inputContainer.append(inputs[1]);
+        inputContainer.insertAdjacentElement('afterend', startBtn,);
+    }
+
     function getPlayers () {
         players.push(createPlayer(inputs[0].value, 'x'));
         players.push(createPlayer(inputs[1].value, 'o'));
         removeInputs ();
         removeLabels ();
+        removeStartBtn ();
         return activePlayer = players[0];
     }
 
@@ -48,6 +65,10 @@ const gameController = (function () {
             element.remove();
         });
     };
+
+    function removeStartBtn () {
+        startBtn.remove();
+    }
 
     function createPlayer (name, symbol) {
         return {name, symbol};
