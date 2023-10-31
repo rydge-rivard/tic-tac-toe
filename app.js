@@ -24,6 +24,7 @@ function getAllSquares () {
 const gameController = (function () {
     const startBtn = document.querySelector('.start');
     const inputs = document.querySelectorAll('input');
+    const labels = document.querySelectorAll('label');
     const boardDiv = document.querySelector('#board');
     startBtn.addEventListener('click', () => getPlayers());
     const players = [];
@@ -31,7 +32,20 @@ const gameController = (function () {
     function getPlayers () {
         players.push(createPlayer(inputs[0].value, 'x'));
         players.push(createPlayer(inputs[1].value, 'o'));
-        console.log(players);
+        removeInputs ();
+        removeLabels ();
+    }
+
+    function removeInputs () {
+        inputs.forEach(element => {
+            element.remove();
+        });
+    }
+
+    function removeLabels () {
+        labels.forEach(element => {
+            element.remove();
+        });
     }
 
     let board = gameBoard();
