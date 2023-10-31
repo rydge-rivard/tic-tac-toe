@@ -73,7 +73,16 @@ const gameController = (function () {
         }
     }
 
+    function declareWinner () {
+        alert(`${activePlayer.name} wins the game.`);
+        resetGame();
+    }
 
+    function resetGame () {
+        divSquares.forEach(square => {
+            square.textContent = '';
+        });
+    }
 
     return {
         
