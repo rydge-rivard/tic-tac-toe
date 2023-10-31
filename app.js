@@ -27,11 +27,9 @@ const gameController = (function () {
     const boardDiv = document.querySelector('#board');
     startBtn.addEventListener('click', getPlayers);
     newBtn.addEventListener('click', newGame)
-    const players = [];
+    let players = [];
     let activePlayer;
     let board = gameBoard();
-
-    printBoard();
 
     function getPlayers () {
         players.push(createPlayer(inputs[0].value, 'x'));
@@ -39,6 +37,7 @@ const gameController = (function () {
         removeInputs ();
         removeLabels ();
         removeStartBtn ();
+        printBoard();
         return activePlayer = players[0];
     }
 
@@ -150,7 +149,7 @@ const gameController = (function () {
             square.remove();
         });
         board = gameBoard();
-        printBoard();
+        players = [];
         h2.textContent = '';
     }
 
