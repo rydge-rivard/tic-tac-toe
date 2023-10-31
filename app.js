@@ -20,21 +20,21 @@ function gameBoard () {
 const gameController = (function () {
     let board = gameBoard();
     const boardDiv = document.querySelector('#board');
-
-    printBoard();
-
     const players = [
         createPlayer('Rydge', 'x'),
         createPlayer('Eli', 'o'),
     ]
     let activePlayer = players[0];
-    console.log(activePlayer);
+
+    printBoard();
+    const divSquares = document.querySelectorAll('#board div')
 
     function createPlayer (name, symbol) {
         return {name, symbol};
     }
 
     function switchPlayerTurn () {
+        checkWinner ();
         activePlayer === players[0] ? activePlayer = players[1] : activePlayer = players[0];
         console.log(`${activePlayer.name}, it's your turn.`)
         return activePlayer;
@@ -54,8 +54,7 @@ const gameController = (function () {
     };
 
     function bindEvents (element, key, id) {
-        element.addEventListener ('click', () => 
-        updateBoard (key, id, element, activePlayer));
+        element.addEventListener ('click', () => updateBoard (key, id, element, activePlayer));
     }
 
     function updateBoard (arrayPosition1, arrayPosition2, element, activePlayer) {
@@ -66,6 +65,15 @@ const gameController = (function () {
         element.textContent = activePlayer.symbol;
         switchPlayerTurn ();
     }
+
+    function checkWinner () {
+        for (const key in board) {
+            const allEqual = board[key].every(v => v !== '' ? v === board[key][0] : false);
+            allEqual === true ? declareWinner() : console.log('continue');
+        }
+    }
+
+
 
     return {
         
