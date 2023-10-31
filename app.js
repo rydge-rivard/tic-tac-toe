@@ -67,18 +67,32 @@ const gameController = (function () {
         board[arrayPosition1][arrayPosition2] = activePlayer.symbol;
         element.textContent = activePlayer.symbol;
         switchPlayerTurn ();
-        checkWinner ();
+        checkRowWinner ();
+        checkColumnWinner ();
     }
 
-    function checkWinner () {
+    function checkRowWinner () {
         for (const key in board) {
             const allEqual = board[key].every(v => v !== '' ? v === board[key][0] : false);
-            allEqual === true ? setTimeout(declareWinner, 120) : console.log('continue');
+            allEqual === true ? setTimeout(declareWinner, 120) : false;
+        }
+    }
+
+    function checkColumnWinner () {
+        for (let i = 0; i < board[0].length; i++) {
+            const element = board[0][i];
+            if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+                if (board[0][i] !== '' && board[1][i] !== '' && board[2][i] !== '') {
+                    setTimeout(declareWinner, 120);
+                }
+            }
         }
     }
 
     function declareWinner () {
+        switchPlayerTurn();
         alert(`${activePlayer.name} wins the game.`);
+        switchPlayerTurn();
         resetGame();
     }
 
