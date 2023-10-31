@@ -70,7 +70,8 @@ const gameController = (function () {
         checkRowWinner ();
         checkDiagonalWinner ();
         checkColumnWinner ();
-        checkTie ();
+        //delay checkTie so that if player wins on full board, the board is already reset and !== tie
+        setTimeout (checkTie, 120);
     }
 
     function checkRowWinner () {
@@ -102,7 +103,6 @@ const gameController = (function () {
             }
         }
     }
-
     function checkTie () {
         const flatBoard = board.flat(3);
         flatBoard.includes('') ? true : setTimeout (declareTie, 120);
