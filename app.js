@@ -32,19 +32,6 @@ const gameController = (function () {
 
     printBoard();
 
-    function newGame () {
-        addInputsLabelsStart();
-        resetGame();
-    }
-
-    function addInputsLabelsStart () {
-        inputContainer.append(labels[0]);
-        inputContainer.append(inputs[0]);
-        inputContainer.append(labels[1]);
-        inputContainer.append(inputs[1]);
-        inputContainer.insertAdjacentElement('afterend', startBtn,);
-    }
-
     function getPlayers () {
         players.push(createPlayer(inputs[0].value, 'x'));
         players.push(createPlayer(inputs[1].value, 'o'));
@@ -163,6 +150,19 @@ const gameController = (function () {
         });
         board = gameBoard();
         printBoard();
+    }
+
+    function newGame () {
+        addInputsLabelsStart();
+        resetGame();
+    }
+
+    function addInputsLabelsStart () {
+        inputContainer.append(labels[0]);
+        inputContainer.append(inputs[0]);
+        inputContainer.append(labels[1]);
+        inputContainer.append(inputs[1]);
+        inputContainer.insertAdjacentElement('afterend', startBtn,);
     }
 
     return {
