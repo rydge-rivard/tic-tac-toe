@@ -176,9 +176,4 @@ const gameController = (function () {
         inputContainer.append(inputs[1]);
         inputContainer.insertAdjacentElement('afterend', startBtn,);
     }
-
-    return {
-        
-    }
-
 })();
