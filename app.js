@@ -1,7 +1,3 @@
-//store the gameboard as an array inside of a Gameboard object
-//Your players are also going to be stored in objects
-//an object to control the flow of the game itself.
-
 function gameBoard () {
     const rows = 3;
     const columns = 3;
@@ -28,30 +24,30 @@ const gameController = (function () {
     const boardDiv = document.querySelector('#board');
     startBtn.addEventListener('click', () => getPlayers());
     const players = [];
+    let activePlayer;
+    let board = gameBoard();
+
+    printBoard();
 
     function getPlayers () {
         players.push(createPlayer(inputs[0].value, 'x'));
         players.push(createPlayer(inputs[1].value, 'o'));
         removeInputs ();
         removeLabels ();
+        return activePlayer = players[0];
     }
 
     function removeInputs () {
         inputs.forEach(element => {
             element.remove();
         });
-    }
+    };
 
     function removeLabels () {
         labels.forEach(element => {
             element.remove();
         });
-    }
-
-    let board = gameBoard();
-    let activePlayer = players[0];
-
-    printBoard();
+    };
 
     function createPlayer (name, symbol) {
         return {name, symbol};
