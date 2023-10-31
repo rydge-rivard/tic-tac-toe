@@ -40,3 +40,12 @@ button {
     display: block;
     border: none;
 }
+
+button:hover {
+    background-color: rgb(38, 38, 38);
+    cursor: pointer;
+}
+
+input {
+    padding: 4px 4px;
+}

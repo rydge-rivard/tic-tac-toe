@@ -22,13 +22,19 @@ function getAllSquares () {
 }
 
 const gameController = (function () {
+    const startBtn = document.querySelector('.start');
+    const inputs = document.querySelectorAll('input');
+    const boardDiv = document.querySelector('#board');
+    startBtn.addEventListener('click', () => getPlayers());
+    const players = [];
+
+    function getPlayers () {
+        players.push(createPlayer(inputs[0].value, 'x'));
+        players.push(createPlayer(inputs[1].value, 'o'));
+        console.log(players);
+    }
 
     let board = gameBoard();
-    const boardDiv = document.querySelector('#board');
-    const players = [
-        createPlayer('Rydge', 'x'),
-        createPlayer('Eli', 'o'),
-    ]
     let activePlayer = players[0];
 
     printBoard();
