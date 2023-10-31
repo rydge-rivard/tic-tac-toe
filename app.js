@@ -10,14 +10,19 @@ function gameBoard () {
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j = 0; j < columns; j++) {
-          board[i].push('');
+          board[i].push('x');
         }
     }
+    console.log(board);
     return board;
 };
 
 const gameController = (function () {
     const board = gameBoard();
+    const boardDiv = document.querySelector('#board');
+
+    printBoard();
+
     const players = [
         createPlayer('Rydge', 'x'),
         createPlayer('Eli', 'o'),
@@ -32,13 +37,20 @@ const gameController = (function () {
     function switchPlayerTurn () {
         activePlayer === players[0].name ? activePlayer = players[1].name : activePlayer = players[0].name;
         return console.log(`${activePlayer}, it's your turn.`)
-    }
+    }    
 
-    
+    function printBoard () {
+        for (const key in board) {
+            board[key].forEach(square => {
+                const newDiv = document.createElement('div');
+                newDiv.textContent = square;
+                boardDiv.appendChild (newDiv);
+            });
+        };
+    };
 
     return {
         
     }
-
 
 })();
