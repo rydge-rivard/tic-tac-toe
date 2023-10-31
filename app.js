@@ -10,7 +10,7 @@ function gameBoard () {
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j = 0; j < columns; j++) {
-          board[i].push('x');
+          board[i].push('');
         }
     }
     console.log(board);
@@ -18,7 +18,7 @@ function gameBoard () {
 };
 
 const gameController = (function () {
-    const board = gameBoard();
+    let board = gameBoard();
     const boardDiv = document.querySelector('#board');
 
     printBoard();
@@ -41,13 +41,27 @@ const gameController = (function () {
 
     function printBoard () {
         for (const key in board) {
+            let id = 0;
             board[key].forEach(square => {
                 const newDiv = document.createElement('div');
+                bindEvents(newDiv, key, id);
                 newDiv.textContent = square;
                 boardDiv.appendChild (newDiv);
+                id += 1;
             });
         };
     };
+
+    function bindEvents (element, key, id) {
+        const arrayPosition1 = key;
+        const arrayPosition2 = id;
+        element.addEventListener ('click', () => updateBoard (arrayPosition1, arrayPosition2, element));
+    }
+
+    function updateBoard (arrayPosition1, arrayPosition2, element) {
+        board[arrayPosition1][arrayPosition2] = 'x';
+        element.textContent = 'x';
+    }
 
     return {
         
