@@ -17,7 +17,12 @@ function gameBoard () {
     return board;
 };
 
+function getAllSquares () {
+    return document.querySelectorAll('#board div');
+}
+
 const gameController = (function () {
+
     let board = gameBoard();
     const boardDiv = document.querySelector('#board');
     const players = [
@@ -27,14 +32,12 @@ const gameController = (function () {
     let activePlayer = players[0];
 
     printBoard();
-    const divSquares = document.querySelectorAll('#board div')
 
     function createPlayer (name, symbol) {
         return {name, symbol};
     }
 
     function switchPlayerTurn () {
-        checkWinner ();
         activePlayer === players[0] ? activePlayer = players[1] : activePlayer = players[0];
         console.log(`${activePlayer.name}, it's your turn.`)
         return activePlayer;
@@ -64,12 +67,13 @@ const gameController = (function () {
         board[arrayPosition1][arrayPosition2] = activePlayer.symbol;
         element.textContent = activePlayer.symbol;
         switchPlayerTurn ();
+        checkWinner ();
     }
 
     function checkWinner () {
         for (const key in board) {
             const allEqual = board[key].every(v => v !== '' ? v === board[key][0] : false);
-            allEqual === true ? declareWinner() : console.log('continue');
+            allEqual === true ? setTimeout(declareWinner, 120) : console.log('continue');
         }
     }
 
@@ -79,9 +83,11 @@ const gameController = (function () {
     }
 
     function resetGame () {
-        divSquares.forEach(square => {
-            square.textContent = '';
+        getAllSquares().forEach(square => {
+            square.remove();
         });
+        board = gameBoard();
+        printBoard();
     }
 
     return {
