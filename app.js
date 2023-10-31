@@ -54,13 +54,14 @@ const gameController = (function () {
     };
 
     function bindEvents (element, key, id) {
-        const arrayPosition1 = key;
-        const arrayPosition2 = id;
         element.addEventListener ('click', () => 
-        updateBoard (arrayPosition1, arrayPosition2, element, activePlayer));
+        updateBoard (key, id, element, activePlayer));
     }
 
     function updateBoard (arrayPosition1, arrayPosition2, element, activePlayer) {
+        if (board[arrayPosition1][arrayPosition2] !== '') {
+            return
+        } 
         board[arrayPosition1][arrayPosition2] = activePlayer.symbol;
         element.textContent = activePlayer.symbol;
         switchPlayerTurn ();
