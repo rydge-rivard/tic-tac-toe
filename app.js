@@ -27,7 +27,7 @@ const gameController = (function () {
         createPlayer('Rydge', 'x'),
         createPlayer('Eli', 'o'),
     ]
-    let activePlayer = players[0].name;
+    let activePlayer = players[0];
     console.log(activePlayer);
 
     function createPlayer (name, symbol) {
@@ -35,8 +35,9 @@ const gameController = (function () {
     }
 
     function switchPlayerTurn () {
-        activePlayer === players[0].name ? activePlayer = players[1].name : activePlayer = players[0].name;
-        return console.log(`${activePlayer}, it's your turn.`)
+        activePlayer === players[0] ? activePlayer = players[1] : activePlayer = players[0];
+        console.log(`${activePlayer.name}, it's your turn.`)
+        return activePlayer;
     }    
 
     function printBoard () {
@@ -55,12 +56,14 @@ const gameController = (function () {
     function bindEvents (element, key, id) {
         const arrayPosition1 = key;
         const arrayPosition2 = id;
-        element.addEventListener ('click', () => updateBoard (arrayPosition1, arrayPosition2, element));
+        element.addEventListener ('click', () => 
+        updateBoard (arrayPosition1, arrayPosition2, element, activePlayer));
     }
 
-    function updateBoard (arrayPosition1, arrayPosition2, element) {
-        board[arrayPosition1][arrayPosition2] = 'x';
-        element.textContent = 'x';
+    function updateBoard (arrayPosition1, arrayPosition2, element, activePlayer) {
+        board[arrayPosition1][arrayPosition2] = activePlayer.symbol;
+        element.textContent = activePlayer.symbol;
+        switchPlayerTurn ();
     }
 
     return {
