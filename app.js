@@ -139,6 +139,7 @@ const gameController = (function () {
     }
 
     function declareWinner () {
+        resetArray ();
         switchPlayerTurn();
         newBtn.insertAdjacentElement('afterend', h2);
         h2.textContent = `Congratulations! ${activePlayer.name} won the game.`
@@ -151,6 +152,10 @@ const gameController = (function () {
         board = gameBoard();
         printBoard();
         h2.textContent = '';
+    }
+
+    function resetArray () {
+        board = gameBoard();
     }
 
     function newGame () {
