@@ -19,6 +19,7 @@ function getAllSquares () {
 
 const gameController = (function () {
     const inputContainer = document.querySelector('.container')
+    const h2 = document.createElement('h3')
     const startBtn = document.querySelector('.start');
     const newBtn = document.querySelector('.new')
     const inputs = document.querySelectorAll('input');
@@ -133,15 +134,14 @@ const gameController = (function () {
     }
 
     function declareTie () {
-        alert('It\'s a tie')
-        resetGame();
+        newBtn.insertAdjacentElement('afterend', h2);
+        h2.textContent = `It\'s a tie.`
     }
 
     function declareWinner () {
         switchPlayerTurn();
-        alert(`${activePlayer.name} wins the game.`);
-        switchPlayerTurn();
-        resetGame();
+        newBtn.insertAdjacentElement('afterend', h2);
+        h2.textContent = `Congratulations! ${activePlayer.name} won the game.`
     }
 
     function resetGame () {
@@ -150,6 +150,7 @@ const gameController = (function () {
         });
         board = gameBoard();
         printBoard();
+        h2.textContent = '';
     }
 
     function newGame () {
