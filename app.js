@@ -70,6 +70,7 @@ const gameController = (function () {
         checkRowWinner ();
         checkDiagonalWinner ();
         checkColumnWinner ();
+        checkTie ();
     }
 
     function checkRowWinner () {
@@ -100,6 +101,16 @@ const gameController = (function () {
                 setTimeout(declareWinner, 120);
             }
         }
+    }
+
+    function checkTie () {
+        const flatBoard = board.flat(3);
+        flatBoard.includes('') ? true : setTimeout (declareTie, 120);
+    }
+
+    function declareTie () {
+        alert('It\'s a tie')
+        resetGame();
     }
 
     function declareWinner () {
