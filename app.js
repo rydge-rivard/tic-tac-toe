@@ -142,6 +142,13 @@ const gameController = (function () {
         switchPlayerTurn();
         newBtn.insertAdjacentElement('afterend', h2);
         h2.textContent = `Congratulations! ${activePlayer.name} won the game.`
+        //remove players so they cannot add any additional symbols
+        removePlayers();
+    }
+
+    function removePlayers () {
+        players = [];
+        activePlayer = '';
     }
 
     function resetGame () {
