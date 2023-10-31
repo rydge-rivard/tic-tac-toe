@@ -25,13 +25,13 @@ const gameController = (function () {
     const inputs = document.querySelectorAll('input');
     const labels = document.querySelectorAll('label');
     const boardDiv = document.querySelector('#board');
-    startBtn.addEventListener('click', getPlayers);
+    startBtn.addEventListener('click', startGame);
     newBtn.addEventListener('click', newGame)
     let players = [];
     let activePlayer;
     let board = gameBoard();
 
-    function getPlayers () {
+    function startGame () {
         players.push(createPlayer(inputs[0].value, 'x'));
         players.push(createPlayer(inputs[1].value, 'o'));
         removeInputs ();
@@ -156,7 +156,7 @@ const gameController = (function () {
             square.remove();
         });
         board = gameBoard();
-        players = [];
+        removePlayers();
         h2.textContent = '';
     }
 
