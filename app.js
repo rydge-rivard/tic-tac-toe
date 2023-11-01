@@ -32,8 +32,8 @@ const gameController = (function () {
     let board = gameBoard();
 
     function startGame () {
-        players.push(createPlayer(inputs[0].value, 'x'));
-        players.push(createPlayer(inputs[1].value, 'o'));
+        players.push(new Player(inputs[0].value, 'x'));
+        players.push(new Player(inputs[1].value, 'o'));
         removeInputs ();
         removeLabels ();
         removeStartBtn ();
@@ -53,8 +53,16 @@ const gameController = (function () {
         startBtn.remove();
     }
 
-    function createPlayer (name, symbol) {
-        return {name, symbol};
+    // old factory function, used class for practice 
+    // function createPlayer (name, symbol) {
+    //     return {name, symbol};
+    // }
+
+    class Player {
+        constructor(name, symbol) {
+            this.name = name;
+            this.symbol = symbol;
+        }
     }
 
     function switchPlayerTurn () {
